@@ -1,4 +1,4 @@
-require "narou_agent/version"
+require 'narou_agent/version'
 
 module NarouAgent
   class Error < StandardError; end
