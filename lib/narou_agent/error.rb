@@ -1,5 +1,5 @@
 class NarouAgent
   Error             = Class.new(StandardError)
-  NotLeggedInError  = Class.new(Error)
+  NotLoggedInError  = Class.new(Error)
   ActionFailedError = Class.new(Error)
 end
