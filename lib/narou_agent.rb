@@ -6,6 +6,7 @@ require_relative 'narou_agent/error'
 require_relative 'narou_agent/version'
 
 require_relative 'narou_agent/actions/login'
+require_relative 'narou_agent/actions/update_part'
 
 class NarouAgent
   BASE_URL = 'https://syosetu.com'
@@ -25,5 +26,10 @@ class NarouAgent
   def login!(id:, password:)
     Actions::Login.new(self).run(id, password)
     @logged_in = true
+  end
+
+  def update_part(ncode:, part_id:, subtitle:, body:)
+    raise NotLoggedInError unless logged_in?
+    Actions::UpdatePart.new(self).run(ncode, part_id, subtitle, body)
   end
 end
