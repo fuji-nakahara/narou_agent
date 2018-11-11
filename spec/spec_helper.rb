@@ -1,4 +1,6 @@
 require 'bundler/setup'
+require 'dotenv/load'
+
 require 'narou_agent'
 
 RSpec.configure do |config|
