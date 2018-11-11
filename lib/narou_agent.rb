@@ -13,7 +13,7 @@ require_relative 'narou_agent/actions/delete_part'
 class NarouAgent
   BASE_URL = 'https://syosetu.com'
 
-  DEFAULT_WAIT_DURATION = 30
+  DEFAULT_WAIT_DURATION = 60
 
   attr_reader :base_url, :driver
 

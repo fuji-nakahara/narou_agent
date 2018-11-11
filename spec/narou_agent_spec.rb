@@ -12,7 +12,7 @@ RSpec.describe NarouAgent do
 
   describe '#create_part and #delete_part' do
     subject do
-      part_url = agent.create_part(ncode: ncode, subtitle: subtitle, body: body, wait_duration: 60)
+      part_url = agent.create_part(ncode: ncode, subtitle: subtitle, body: body)
       agent.delete_part(ncode: ncode, part_id: NarouAgent::UrlHelper.extract_part_id(part_url))
     end
 
