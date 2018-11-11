@@ -11,6 +11,10 @@ class NarouAgent
           sum += 9999 * alphabets.index(alphabet) * (alphabets.size ** i)
         end
       end
+
+      def extract_part_id(url)
+        url[%r{noveldataid/(\d+)}, 1]
+      end
     end
 
     private
@@ -19,12 +23,24 @@ class NarouAgent
       "#{base_url}/login/input/"
     end
 
+    def novel_url(ncode)
+      "#{base_url}/usernovelmanage/top/ncode/#{UrlHelper.ncode_to_i(ncode)}/"
+    end
+
     def part_url(ncode, id)
       "#{base_url}/usernoveldatamanage/top/ncode/#{UrlHelper.ncode_to_i(ncode)}/noveldataid/#{id}/"
     end
 
+    def new_part_url(ncode)
+      "#{base_url}/usernovelmanage/ziwainput/ncode/#{UrlHelper.ncode_to_i(ncode)}}/"
+    end
+
     def edit_part_url(ncode, id)
       "#{base_url}/usernoveldatamanage/updateinput/ncode/#{UrlHelper.ncode_to_i(ncode)}/noveldataid/#{id}/"
+    end
+
+    def delete_part_url(ncode, id)
+      "#{base_url}/usernoveldatamanage/deleteconfirm/ncode/#{UrlHelper.ncode_to_i(ncode)}/noveldataid/#{id}/"
     end
   end
 end

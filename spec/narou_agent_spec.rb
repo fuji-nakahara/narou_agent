@@ -10,6 +10,36 @@ RSpec.describe NarouAgent do
     it { is_expected.to be true }
   end
 
+  describe '#create_part and #delete_part' do
+    subject do
+      part_url = agent.create_part(ncode: ncode, subtitle: subtitle, body: body, wait_duration: 60)
+      agent.delete_part(ncode: ncode, part_id: NarouAgent::UrlHelper.extract_part_id(part_url))
+    end
+
+    let(:ncode) { ENV.fetch('NCODE') }
+    let(:subtitle) { '投稿・削除テスト' }
+    let(:body) do
+      <<~EOS
+        この小説は NarouAgent のテストで用いるためのものです。
+
+        NarouAgent は、小説の投稿・編集・削除といった操作を代行するソフトウェアです。
+        Selenium WebDriver を用いた Ruby gem として実装されています。
+
+        https://github.com/fuji-nakahara/narou_agent
+        
+        この小説が削除されていなければ、NarouAgent の削除機能に問題が起きています。
+      EOS
+    end
+
+    before do
+      agent.login!(id: ENV.fetch('NAROU_ID'), password: ENV.fetch('NAROU_PASSWORD'))
+    end
+
+    it 'creates and deletes part without errors' do
+      expect { subject }.not_to raise_error
+    end
+  end
+
   describe '#update_part' do
     subject { agent.update_part(ncode: ncode, part_id: part_id, subtitle: subtitle, body: body) }
 
