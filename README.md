@@ -1,8 +1,6 @@
 # NarouAgent
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/narou_agent`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+Selenium script for [小説家になろう](https://syosetu.com/) novel management.
 
 ## Installation
 
@@ -22,7 +20,29 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+```ruby
+require 'narou_agent'
+
+agent = NarouAgent.new(driver: Selenium::WebDriver.for(:chrome))
+
+# ログイン
+agent.login!(id: YOUR_ID, password: YOUR_PASSWORD) 
+
+# 連載小説のNコード
+ncode = 'N8472FC'
+
+# 次話投稿
+part_url = agent.create_part(ncode: ncode, subtitle: 'サブタイトル', body: '本文')
+
+# URL から part_id を抽出
+part_id = NarouAgent::UrlHelper.extract_part_id(part_url) 
+
+# 編集
+agent.update_part(ncode: ncode, part_id: part_id, subtitle: '新しいサブタイトル', body: '新しい本文')
+
+# 削除
+agent.delete_part(ncode: ncode, part_id: part_id) 
+```
 
 ## Development
 
@@ -32,7 +52,7 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/narou_agent. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
+Bug reports and pull requests are welcome on GitHub at https://github.com/fuji-nakahara/narou_agent. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
 
 ## License
 
@@ -40,4 +60,4 @@ The gem is available as open source under the terms of the [MIT License](https:/
 
 ## Code of Conduct
 
-Everyone interacting in the NarouAgent project’s codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/[USERNAME]/narou_agent/blob/master/CODE_OF_CONDUCT.md).
+Everyone interacting in the NarouAgent project’s codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/fuji-nakahara/narou_agent/blob/master/CODE_OF_CONDUCT.md).
