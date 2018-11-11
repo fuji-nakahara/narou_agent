@@ -1,9 +1,12 @@
 RSpec.describe NarouAgent do
-  it 'has a version number' do
-    expect(NarouAgent::VERSION).not_to be nil
-  end
+  let(:agent) { described_class.new(driver: driver) }
 
-  it 'does something useful' do
-    expect(false).to eq(true)
+  describe '#login!' do
+    subject { agent.login!(id: id, password: password) }
+
+    let(:id) { ENV.fetch('NAROU_ID') }
+    let(:password) { ENV.fetch('NAROU_PASSWORD') }
+
+    it { is_expected.to be true }
   end
 end
