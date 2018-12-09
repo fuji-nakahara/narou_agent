@@ -32,14 +32,14 @@ class NarouAgent
     @logged_in = true
   end
 
-  def create_part(ncode:, subtitle:, body:, wait_duration: DEFAULT_WAIT_DURATION)
+  def create_part(ncode:, subtitle:, body:, date: nil, wait_duration: DEFAULT_WAIT_DURATION)
     raise NotLoggedInError unless logged_in?
-    Actions::CreatePart.new(self).run(ncode, subtitle, body, wait_duration)
+    Actions::CreatePart.new(self).run(ncode, subtitle, body, date, wait_duration)
   end
 
-  def update_part(ncode:, part_id:, subtitle:, body:)
+  def update_part(ncode:, part_id:, subtitle:, body:, date: nil)
     raise NotLoggedInError unless logged_in?
-    Actions::UpdatePart.new(self).run(ncode, part_id, subtitle, body)
+    Actions::UpdatePart.new(self).run(ncode, part_id, subtitle, body, date)
   end
 
   def delete_part(ncode:, part_id:)
