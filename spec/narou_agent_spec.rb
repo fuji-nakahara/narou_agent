@@ -1,6 +1,17 @@
 RSpec.describe NarouAgent do
   let(:agent) { described_class.new(driver: driver) }
 
+  let(:body) do
+    <<~EOS
+      機械の小説とは、機械について書かれた小説のことである。
+      機械による小説とは、機械によって書かれた小説のことである。
+      機械のための小説とは、機械の存続のために書かれた小説のことである。
+      
+      そして、この小説は|機械《ソフトウェア》の|機械《ソフトウェア》による|機械《ソフトウェア》のための小説である。
+      この小説は、ある機械に関するものであり、ある機械によって書かれ、ある機械が正常に動作することを示すものである。
+    EOS
+  end
+
   describe '#login!' do
     subject { agent.login!(id: id, password: password) }
 
@@ -17,19 +28,7 @@ RSpec.describe NarouAgent do
     end
 
     let(:ncode) { ENV.fetch('NCODE') }
-    let(:subtitle) { '投稿・削除テスト' }
-    let(:body) do
-      <<~EOS
-        この小説は NarouAgent のテストで用いるためのものです。
-
-        NarouAgent は、小説の投稿・編集・削除といった操作を代行するソフトウェアです。
-        Selenium WebDriver を用いた Ruby gem として実装されています。
-
-        https://github.com/fuji-nakahara/narou_agent
-        
-        この小説が削除されていなければ、NarouAgent の削除機能に問題が起きています。
-      EOS
-    end
+    let(:subtitle) { '創造と破壊' }
 
     before do
       agent.login!(id: ENV.fetch('NAROU_ID'), password: ENV.fetch('NAROU_PASSWORD'))
@@ -45,19 +44,7 @@ RSpec.describe NarouAgent do
 
     let(:ncode) { ENV.fetch('NCODE') }
     let(:part_id) { ENV.fetch('PART_ID') }
-    let(:subtitle) { '編集テスト' }
-    let(:body) do
-      <<~EOS
-        この小説は NarouAgent のテストで用いるためのものです。
-
-        NarouAgent は、小説の投稿・編集・削除といった操作を代行するソフトウェアです。
-        Selenium WebDriver を用いた Ruby gem として実装されています。
-
-        https://github.com/fuji-nakahara/narou_agent
-        
-        この小説は NarouAgent によって #{Time.now.strftime('%Y年%m月%d日%H時%M分')} に編集されました。
-      EOS
-    end
+    let(:subtitle) { '改変' }
 
     before do
       agent.login!(id: ENV.fetch('NAROU_ID'), password: ENV.fetch('NAROU_PASSWORD'))
@@ -74,19 +61,7 @@ RSpec.describe NarouAgent do
     end
 
     let(:ncode) { ENV.fetch('NCODE') }
-    let(:subtitle) { '予約テスト' }
-    let(:body) do
-      <<~EOS
-        この小説は NarouAgent のテストで用いるためのものです。
-
-        NarouAgent は、小説の投稿・編集・削除といった操作を代行するソフトウェアです。
-        Selenium WebDriver を用いた Ruby gem として実装されています。
-
-        https://github.com/fuji-nakahara/narou_agent
-        
-        この小説は NarouAgent によって #{Time.now.strftime('%Y年%m月%d日%H時%M分')} に編集されました。
-      EOS
-    end
+    let(:subtitle) { '未来' }
     let(:date) { Time.now + 60 * 60 * 24 }
 
     before do
