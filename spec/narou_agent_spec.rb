@@ -1,5 +1,5 @@
 RSpec.describe NarouAgent do
-  let(:agent) { described_class.new(driver: driver) }
+  let(:agent) { described_class.new }
 
   let(:body) do
     <<~EOS
