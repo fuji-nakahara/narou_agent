@@ -1,7 +1,7 @@
 sudo: required
 language: ruby
 rvm:
-  - 2.5
+  - 2.6.2
 addons:
   chrome: stable
 env:
@@ -11,7 +11,7 @@ env:
     - secure: wVi0jY4gK6bK9v6UbcE9BTBjnYaQVVHQC4SXjT05O7Zstt6rdMesg22yR5RgHvjxjD+yfGiPW50kSkcKIpdQ4D8Zm6u5d5BqyasJfmvQd7Hww7jhx+KChAWMyos2nOlvr4noXNcpllNhedaU9aEXADijxOpCCm1NvjW7GBWOOjkdsgBJcqU2z48NtpbazW+J6/ZiVT+Hsi+weIvIbmZ8TUHSFRmHEncz0TyzzmDbio+Lobuksh8pMoHDs157FfpT0picKXMsQRUcB/nTisnoLzSBzHiT9ttPYXqET0dEDbM+e5VhPjaXQEHQKtiJDeJxsGVpHpo+DYMt4Q3KrqO6il3hKJ3JQK31fzAh8LN1JbmDxIWn1zqyX5YolWyrxYVOv/HByBGyp+4w4WPUw3sspX9BL27fwYEE0qqYmtOvE/Z22GOfUHXIVjyNuGzrBGP13IAPlmxqHZGIYX5TYgZTSc13v3nKXzsMm9onjzcwGgbPmsNSKGl+/mC5gdNVgwG6PRz+zhU5v5X8ENJhFfrUozE4q6J6sVSXSJWdzQ0S6XfE02pwT0pwX65mVpLpa1G8xVAxxPFDPg9+hHjXlYncKL0r7WytKVZ9EJo7WtRjvRH7EEC3DOGnG6iDZFOi0mO/YOWWOdK4GmVh+Xldt82fzfuhMqC0mL07HYm69nyYpLc=
 cache: bundler
 before_install:
-  - gem install bundler -v 1.17.1
+  - gem install bundler -v 2.0.1
 install:
   - bundle install --jobs=3 --retry=3
   # https://github.com/SeleniumHQ/selenium/blob/master/scripts/travis/install.sh#L4-L6
